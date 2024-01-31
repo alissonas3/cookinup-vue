@@ -1,68 +1,66 @@
 <template>
-        <main class="conteudo-principal">
-            <section>
-                <span class="subtitulo-lg sua-lista-texto">
-                    Sua Lista de Ingredientes
-                </span>
-                
-                <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-                    <li class="ingrediente" v-for="ingrediente in ingredientes" :key="ingrediente">
-                        {{ ingrediente }}
-                    </li>
-                </ul>
+  <main class="conteudo-principal">
+    <section>
+      <span class="subtitulo-lg sua-lista-texto">
+        Sua Lista de Ingredientes
+      </span>
 
-                
-            </section>
-        </main>
+      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
+        <li v-for="ingrediente in ingredientes" :key="ingrediente">
+          <TagColor :texto="ingrediente" />
+        </li>
+      </ul>
+    </section>
+    
+    <Ingredients />
+
+  </main>
 </template>
 
 <script lang="ts">
+import Ingredients from "./SelectIngredients.vue";
+import TagColor from './TagColor.vue';
+
 export default {
-    name: "MainContent",
-    data() {
-        return {
-            ingredientes: ["Alho", "Manteiga", "Orégano", "Pão", "Coentro", "Limão"]
-        }
-    }
-}
+  name: "MainContent",
+
+  data() {
+    return {
+      ingredientes: ["Alho", "Manteiga", "Orégano", "Pão", "Coentro", "Limão"],
+    };
+  },
+
+  components: {
+    Ingredients,
+    TagColor,
+  },
+};
 </script>
 
 <style scoped>
 .conteudo-principal {
-     padding: 6.5rem 7.5rem;
-     border-radius: 3.75rem 3.75rem 0rem 0rem;
-     background: var(--creme, #FFFAF3);
-     color: var(--cinza, #444);
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     gap: 5rem;
+  padding: 6.5rem 7.5rem;
+  border-radius: 3.75rem 3.75rem 0rem 0rem;
+  background: var(--creme, #fffaf3);
+  color: var(--cinza, #444);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
 }
 
 .sua-lista-texto {
-    color: var(--coral, #F0633C);
-    display: block;
-    text-align: center;
-    margin-bottom: 1.5rem;
+  color: var(--coral, #f0633c);
+  display: block;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .ingredientes-sua-lista {
-      display: flex;
-      justify-content: center;
-      gap: 1rem 1.5rem;
-      flex-wrap: wrap;
-}
-
-.ingrediente {
-    display: inline-block;
-    border-radius: 0.5rem;
-    min-width: 4.25rem;
-    padding: 0.5rem;
-    text-align: center;
-    transition: 0.2s;
-    color: var(--creme, #FFFAF3);
-    background: var(--coral, #F0633C);
-    font-weight: 700;
+  display: flex;
+  justify-content: center;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
 }
 
 .lista-vazia {
@@ -72,7 +70,7 @@ export default {
   flex-wrap: wrap;
   gap: 0.25rem;
 
-  color: var(--coral, #F0633C);
+  color: var(--coral, #f0633c);
   text-align: center;
 }
 
