@@ -1,39 +1,33 @@
 <template>
   <main class="conteudo-principal">
-    <section>
-      <span class="subtitulo-lg sua-lista-texto">
-        Sua Lista de Ingredientes
-      </span>
 
-      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-        <li v-for="ingrediente in ingredientes" :key="ingrediente">
-          <TagColor :texto="ingrediente" />
-        </li>
-      </ul>
-    </section>
-    
-    <Ingredients />
+    <SuaLista :listaIngredientes="ingredientes"/>
+    <SelectIngredients @addIngredientes="addIngredient" />
 
   </main>
 </template>
 
 <script lang="ts">
-import Ingredients from "./SelectIngredients.vue";
-import TagColor from './TagColor.vue';
+import SelectIngredients from "./SelectIngredients.vue";
+import SuaLista from './YourList.vue';
 
 export default {
   name: "MainContent",
 
   data() {
     return {
-      ingredientes: ["Alho", "Manteiga", "Orégano", "Pão", "Coentro", "Limão"],
+      ingredientes: [] as string[],
     };
   },
-
   components: {
-    Ingredients,
-    TagColor,
+    SelectIngredients,
+    SuaLista,
   },
+  methods: {
+    addIngredient(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
+    }
+  }
 };
 </script>
 
@@ -47,44 +41,5 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 5rem;
-}
-
-.sua-lista-texto {
-  color: var(--coral, #f0633c);
-  display: block;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.ingredientes-sua-lista {
-  display: flex;
-  justify-content: center;
-  gap: 1rem 1.5rem;
-  flex-wrap: wrap;
-}
-
-.lista-vazia {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-
-  color: var(--coral, #f0633c);
-  text-align: center;
-}
-
-@media only screen and (max-width: 1300px) {
-  .conteudo-principal {
-    padding: 5rem 3.75rem;
-    gap: 3.5rem;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .conteudo-principal {
-    padding: 4rem 1.5rem;
-    gap: 4rem;
-  }
 }
 </style>

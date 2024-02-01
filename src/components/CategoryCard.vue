@@ -7,7 +7,9 @@
 
         <ul class="categoria__ingredientes">
             <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-                <TagColor :texto="ingrediente"/>
+                <SelectedIngredient :ingredienteSelecionado="ingrediente"
+                  @addIngredientes="$emit('addIngredientes', $event)"
+                />
             </li>
         </ul>
     </article>
@@ -16,7 +18,7 @@
 <script lang="ts">
 import type ICategory from '@/interfaces/ICategory';
 import type { PropType } from 'vue';
-import TagColor from './TagColor.vue';
+import SelectedIngredient from './SelectedIngredient.vue';
 
 
 export default {
@@ -25,7 +27,10 @@ export default {
     props: {
         categoria: { type: Object as PropType<ICategory>, required: true }
         },
-    components: { TagColor },
+    components: { SelectedIngredient },
+
+    emits: ['addIngredientes']
+
 }
 
 </script>

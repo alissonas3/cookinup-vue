@@ -1,6 +1,6 @@
 <template>
-    <span class="tag-color">
-        {{ texto }}
+    <span :class="['tag-color', { active }]">
+        {{ textos }}
     </span>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
      name: "TagColor",
         props: {
-            texto: { type: String, required: true }
+            textos: { type: String, required: true },
+            active: Boolean
         }
     }
 </script>
@@ -22,6 +23,12 @@ export default {
   padding: 0.5rem;
   text-align: center;
   transition: 0.2s;
+  color: var(--cinza);
+  background-color: var(--cinza-claro);
+  font-weight: 400;
+}
+
+.active {
   color: var(--creme, #fffaf3);
   background: var(--coral, #f0633c);
   font-weight: 700;
