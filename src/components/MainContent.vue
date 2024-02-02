@@ -2,12 +2,14 @@
   <main class="conteudo-principal">
 
     <SuaLista :listaIngredientes="ingredientes"/>
-    <SelectIngredients @addIngredientes="addIngredient" />
-
+    <SelectIngredients @addIngredientes="addIngredient"/>
+    <SearchReceipts />
+    
   </main>
 </template>
 
 <script lang="ts">
+import SearchReceipts from './SearchReceipts.vue';
 import SelectIngredients from "./SelectIngredients.vue";
 import SuaLista from './YourList.vue';
 
@@ -22,6 +24,7 @@ export default {
   components: {
     SelectIngredients,
     SuaLista,
+    SearchReceipts,
   },
   methods: {
     addIngredient(ingrediente: string) {
